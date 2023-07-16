@@ -17,6 +17,11 @@ def create_app():
     from .db import init_app
     init_app(app)
 
+    from todo import auth
+    from todo import todo
+    app.register_blueprint(auth.bp)
+    app.register_blueprint(todo.bp)
+
     @app.route('/hello')
     def hello():
         return {'hi': "Hi, this is a microservice created with Flask"}
