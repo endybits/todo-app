@@ -14,11 +14,11 @@ def create_app():
     )
     #os.environ['FLASK_ENV'] = 'development'
 
-    import db
-    db.init_app(app)
-    
+    from .db import init_app
+    init_app(app)
+
     @app.route('/hello')
     def hello():
         return {'hi': "Hi, this is a microservice created with Flask"}
-
+    
     return app

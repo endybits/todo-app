@@ -14,7 +14,7 @@ instructions = [
         CREATE TABLE todo (
             id INT PRIMARY KEY AUTO_INCREMENT,
             created_by INT NOT NULL,
-            created_at TIMESTAMP NOT NULL DEFOULT CURRENT_TIMESTAMP,
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             description TEXT NOT NULL,
             completed BOOLEAN NOT NULL,
             FOREIGN KEY (created_by) REFERENCES user (id)

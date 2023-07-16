@@ -23,20 +23,22 @@ def close_db(e=None):
         db.close()
 
 
-@click.command('init-db')
-@with_appcontext
 def init_db():
     db, c = get_db()
 
     for instruction in instructions:
         c.execute(instruction)
+
     db.commit()
 
 
-def inid_db_command():
+@click.command('init-db')
+@with_appcontext
+def init_db_command():
     init_db()
     click.echo('DB initialized!')
 
 
 def init_app(app):
     app.teardown_appcontext(close_db)
+    app.cli.add_command(init_db_command)
